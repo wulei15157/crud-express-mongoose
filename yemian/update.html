@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+	<title>{{ students_edit }}</title>
+		<link rel="stylesheet" type="text/css" href="/public/bootstrap-3.3.7-dist/css/bootstrap.css">
+	 <script type="text/javascript" src="/node_modules/jquery/dist/jquery.min.js"></script>
+ 
+	 <script type="text/javascript" src="/public/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+</head>
+<body class="bg-danger">
+	<div class="alert alert-success">
+	<a class="alert-link" href="/students">返回学生列表</a></div>
+
+<div class='container'>
+	<form action="/students/edit" method="post"> 
+ 		<div class="form-group">
+			<label for="exampleInputEmail1">姓名</label>
+		<input class="form-control" type="text" name="name" value="{{ student.name }}">
+        </div>
+        <div class="form-group">
+			<label for="exampleInputEmail1">性别</label>
+		<input class="form-control" type="text" name="gender" value="{{ student.gender }}">
+        </div>
+        <div class="form-group">
+			<label for="exampleInputEmail1">年龄</label>
+		<input class="form-control" type="text" name="age" value="{{ student.age }}">
+        </div>
+        <div class="form-group">
+			<label for="exampleInputEmail1">兴趣</label>
+		<input class="form-control" type="text" name="hobbies" value="{{ student.hobbies }}">
+        </div>
+        <div class="form-group">
+			<label for="exampleInputEmail1">id</label>
+		<input class="form-control" type="text" name="id" value="{{ student._id }}">
+        </div>
+  <input class="btn btn-success" type="submit" name="" value="修改">
+	</form>
+
+</div>
+
+
+<script>
+	
+	var ssd = document.getElementsByName('id')[0].value
+	ssd = ssd.replace(/"/g,'')
+	document.getElementsByName('id')[0].value = ssd
+
+
+
+  </script>
+  
+
+
+
+ </body>
+</html>

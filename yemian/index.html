@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>学生列表-{{title}}</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">  
+	<!--  手机端 -->   
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="/public/bootstrap-3.3.7-dist/css/bootstrap.css">
+	 <script type="text/javascript" src="/node_modules/jquery/dist/jquery.min.js"></script>
+ 
+	 <script type="text/javascript" src="/public/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+<style>
+
+	/* 伪类  */
+a:link    {color:#000;}
+a:visited {color:green;}
+a:hover   {color:red;}
+a:active  {color:yellow;}
+.biaoti:after{content:'-统计'url(https://www.baidu.com/img/flexible/logo/pc/result.png); margin-left: 5%;font:italic bold 1rem arial,sans-serif;;}
+ /*table tr:nth-of-type(even){background: blue }*/   /* 偶数行css */
+}
+/*table thead tr:nth-child(1){background:none;}*/
+
+ </style>
+</head>
+<body>
+
+ 
+
+<div class="alert alert-success">
+学生列表 <a href="#" class="alert-link">下载</a>
+</div>
+ {{each bingtu}}       {{$value.value }} 
+                  
+  <a href="https://cdn.staticfile.org">  {{$value.name }} </a>
+ {{/each}}  <div></div>
+ 
+
+ 
+
+<h1 class="text-center text-info biaoti">{{ sss }}</h1>
+
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column ">
+			<table class="table border text-center"  >
+				<thead>
+					<tr class="text-center">
+						{{ each liebiaoming }}
+						<th class="text-center">
+							{{ $value }}
+						</th>
+						 {{ /each }}
+					</tr>
+				</thead>
+				<tbody>
+					{{ each students }}
+					<tr>
+						<td>
+							
+							<input type="checkbox" name="">
+						</td>
+						<td>
+
+							{{ $index+1 }} 
+						</td>
+						<td>
+							{{ $value.name }}
+						</td>
+						<td>
+							{{ $value.gender }}
+						</td>
+						<td>
+							{{ $value.age }}
+						</td>
+							<td>
+							{{ $value.hobbies }}
+						</td><td>
+							<a  href="/students/edit?id={{ $value._id }}">编辑</a>
+							 <a id="delete"  onclick="del_sure()"  href="javascript:if(confirm('确实要删除吗?'))location='/students/delete?id={{ $value._id }}'">删除</a>
+						</td>
+					</tr>
+				 {{/each}}
+				</tbody>
+			</table>
+ 
+<a class="btn btn-success" href="/students/new">添加学生</a>
+<a class="btn btn-success" href="/students/delete">批量删除</a>
+
+		</div>
+	</div>
+</div>
+
+
+ 
+ 
+            <div id="main" style="width:100%;height:400px" ></div>
+
+  
+
+
+
+    <script type="text/javascript">
+ 
+ 
+var data_data = [          // 数据数组，name 为数据项名称，value 为数据项值
+                        {value:235, name:'视频广告'},
+                        {value:274, name:'联盟广告'},
+                        {value:310, name:'邮件营销'},
+                        {value:335, name:'直接访问'},
+                        {value:400, name:'搜索引擎'}
+                    ]
+
+
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+        // $.get('data.json').done(function (data) {
+
+        myChart.setOption({
+        	 title: {
+        	 	
+        	 	subtext:'学生统计图',
+                text: '第一个 ECharts 实例',
+               // y:'top',
+               // textAlign:'center' ,
+               x:'center'
+             },
+              tooltip: { },
+            
+        	  series : [
+                {
+                    name: '测试',
+                    type: 'pie',    // 设置图表类型为饼图
+                    radius: '55%',  // 饼图的半径，外半径为可视区尺寸（容器高宽中较小一项）的 55% 长度。
+                    data:data_data
+               }
+            ]
+        })
+
+window.onresize = myChart.resize;  //echars 图表自适应页面
+//$(window).load(function() {
+$(document).ready(function(){
+ $('table tbody tr:even').addClass('alert alert-success')
+  $('table tbody tr:odd').addClass('alert alert-danger')
+
+ }) 
+
+function mydelete(){
+	 alert('确认删除吗')
+}
+ 
+
+
+function del_sure(){ 
+var gnl=confirm("你真的确定要删除吗?"); 
+if (gnl==true){ 
+return true; 
+} 
+else{ 
+return false; 
+} 
+} 
+
+
+
+    </script>
+
+</body>
+</html>
